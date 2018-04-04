@@ -22,7 +22,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "fabric8-hypothesis-core-image": "github:fabric8-hdd/fabric8-hypothesis-core-image",
-    "manager-api": "github:fabric8-hdd/fabric8-hypothesis-manager-api"
+    "manager-api": "github:anmolbabu/manager-api"
   },
   "devDependencies": {
     "chai": "^4.1.2",

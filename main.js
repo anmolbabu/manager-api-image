@@ -5,13 +5,13 @@ var express = require("express"),
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-var port = process.env.APP_PORT || 9090,
+var port = process.env.APP_PORT || 10080,
 	ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0"
 
 var routes = require("./node_modules/manager-api/src/api/routes.js")(app, process.env.ROUTE_PATH + process.env.ROUTE_PREFIX)
 
 //Setting up server
-var server = app.listen(port, function () {
+var server = app.listen(port, ip, function () {
 	var port = server.address().port
 	console.log("App now running on port", port)
 })

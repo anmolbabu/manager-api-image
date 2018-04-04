@@ -17,16 +17,14 @@ objects:
     replicas: 1
     selector:
       app: ${APP_NAME}
-      deploymentconfig: ${APP_NAME}
     template:
       metadata:
         labels:
           app: ${APP_NAME}
-          deploymentconfig: ${APP_NAME}
       spec:
         containers:
           - image: >-
-              registry.devshift.net/fabric8-hdd/${IMAGE_NAME}:${IMAGE_TAG}
+              anmolb/osio-hypothesis-manager-api:latest
             imagePullPolicy: Always
             name: ${APP_NAME}
             env:
@@ -36,6 +34,8 @@ objects:
               value: ${ROUTE_PATH}
             - name: ROUTE_PREFIX
               value: ${ROUTE_PREFIX}
+            - name: BEARER_STR
+              value: ${BEARER_STR}
             ports:
             - containerPort: ${{HDD_MANAGER_API_PORT}}
               protocol: TCP
@@ -79,7 +79,7 @@ objects:
         protocol: TCP
         targetPort: ${{HDD_MANAGER_API_PORT}}
     selector:
-      deploymentconfig: ${APP_NAME}
+      app: ${APP_NAME}
 - apiVersion: v1
   kind: Route
   metadata:
@@ -132,3 +132,8 @@ parameters:
   required: true
   name: ROUTE_PREFIX
   value: "/api/v1.0"
+- description: BEARER STRING
+  displayName: BEARER STRING
+  required: true
+  name: BEARER_STR
+  value: ""
